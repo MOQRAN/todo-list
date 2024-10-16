@@ -26,6 +26,13 @@
     <option value="Urgent">Urgent</option>
   </select>
 
+  <div class="progress-container">
+    <h3>Task Progress</h3>
+    <div class="progress-bar">
+      <div class="progress" [style.width]="getProgressPercentage() + '%'"></div>
+    </div>
+    <p>{{ getCompletedTasks() }} of {{ todos.length }} tasks completed</p>
+  </div>
   <ul class="todo-list">
     <li
       *ngFor="let todo of filteredTodos; let i = index"
@@ -33,7 +40,8 @@
       [ngClass]="{ overdue: isOverdue(todo.dueDate) }"
       [@taskState]
     >
-      <span *ngIf="!editingIndex || editingIndex !== i"
+    <input type="checkbox" [(ngModel)]="todo.completed" (click)="toggleCompletion(i)" />
+      <span [class.completed]="todo.completed" *ngIf="!editingIndex || editingIndex !== i"
         >{{ todo.task }} - <strong>{{ todo.category }}</strong>
         <strong>{{ todo.dueDate | date : "shortDate" }}</strong>
       </span>

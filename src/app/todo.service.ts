@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 export interface Todo {
   task: string;
   category: string;
-  dueDate:string
+  dueDate:string,
+  completed: boolean
 }
 
 @Injectable({
@@ -24,7 +25,7 @@ export class TodoService {
   }
 
   addTodo(task: string, category: string,dueDate:string) {
-    this.todos.push({ task, category,dueDate });
+    this.todos.push({ task, category,dueDate, completed:false});
     this.todos.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
     this.saveTodos();
   }
@@ -35,6 +36,10 @@ export class TodoService {
   }
   saveTodos() {
     localStorage.setItem('todos', JSON.stringify(this.todos));
+  }
+  toggleCompletion(index: number) {
+    this.todos[index].completed = !this.todos[index].completed;
+    this.saveTodos();
   }
 
   getTodosByCategory(category: string) {

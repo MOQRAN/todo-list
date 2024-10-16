@@ -66,4 +66,16 @@ export class TodoComponent {
       this.todoService.saveTodos();
     }
   }
+  getCompletedTasks(): number {
+    return this.todos.filter(todo => todo.completed).length;
+  }
+  getProgressPercentage(): number {
+    const completedTasks = this.getCompletedTasks();
+    return this.todos.length > 0 ? (completedTasks / this.todos.length) * 100 : 0;
+  }
+
+toggleCompletion(index: number) {
+  this.todoService.toggleCompletion(index);
+  // this.todos = this.todoService.getTodos();
+}
 }

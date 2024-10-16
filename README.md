@@ -24,7 +24,7 @@ Make sure you have the following installed:
 
 1. Clone the repository or download the zip file:
     ```bash
-    git clone https://github.com/your-username/angular-todo-list.git
+    git clone https://github.com/MOQRAN/todo-list.git
     cd angular-todo-list
     ```
 

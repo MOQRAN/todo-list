@@ -45,6 +45,8 @@
       [ngClass]="{ overdue: isOverdue(todo.dueDate) }"
       [@taskState]
       [class.priority-high]="todo.priority === 'High'"
+      [class.priority-medium]="todo.priority === 'Medium'"
+      [class.priority-low]="todo.priority === 'Low'"
     >
     <input type="checkbox" [(ngModel)]="todo.completed" (click)="toggleCompletion(i)" />
       <span [class.completed]="todo.completed" *ngIf="!editingIndex || editingIndex !== i"

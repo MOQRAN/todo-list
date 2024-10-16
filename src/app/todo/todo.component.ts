@@ -11,6 +11,15 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       transition(':enter', [animate('300ms ease-in', style({ opacity: 1 }))]),
       transition(':leave', [animate('300ms ease-out', style({ opacity: 0 }))]),
     ]),
+    trigger('taskAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0, transform: 'translateY(-20px)' }))
+      ])
+    ])
   ],
 })
 export class TodoComponent {

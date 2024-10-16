@@ -42,8 +42,9 @@
     <li
       *ngFor="let todo of filteredTodos; let i = index"
       class="todo-item"
-      [ngClass]="{ overdue: isOverdue(todo.dueDate) }"
+      [ngClass]="{ overdue: isOverdue(todo.dueDate),'completed': todo.completed }"
       [@taskState]
+      [@taskAnimation]
       [class.priority-high]="todo.priority === 'High'"
       [class.priority-medium]="todo.priority === 'Medium'"
       [class.priority-low]="todo.priority === 'Low'"
@@ -52,7 +53,7 @@
       <span [class.completed]="todo.completed" *ngIf="!editingIndex || editingIndex !== i"
         >{{ todo.task }} - <strong>{{ todo.category }}</strong>
         <strong>{{ todo.dueDate | date : "shortDate" }}</strong>
-        <strong>{{ todo.priority }}</strong>
+        <p class="priority-{{ todo.priority.toLowerCase() }}">{{ todo.priority }}</p>
       </span>
       <input *ngIf="editingIndex === i" [(ngModel)]="editedTask" />
       <button

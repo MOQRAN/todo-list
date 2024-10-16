@@ -167,3 +167,47 @@
     margin-top: 10px;
   }
 }
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade-Out Animation */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Add transition effects */
+.todo-item {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Scale effect on hover */
+.todo-item:hover {
+  transform: scale(1.03);
+}
+
+/* Animations for adding and removing tasks */
+.task-added {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.task-removed {
+  animation: fadeOut 0.5s ease forwards;
+}
+

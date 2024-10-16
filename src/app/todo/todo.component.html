@@ -7,6 +7,7 @@
     <option value="Personal">Personal</option>
     <option value="Urgent">Urgent</option>
   </select>
+  <input type="date" [(ngModel)]="dueDate" class="date-input" />
   <button (click)="addTodo()" class="add-task-btn">Add</button>
 
   <h3>Filter by Category</h3>
@@ -18,8 +19,8 @@
   </select>
 
   <ul class="todo-list">
-    <li *ngFor="let todo of filteredTodos; let i = index" class="todo-item">
-      {{ todo.task }} - <strong>{{ todo.category }}</strong>
+    <li *ngFor="let todo of filteredTodos; let i = index" class="todo-item" [ngClass]="{'overdue': isOverdue(todo.dueDate)}">
+      {{ todo.task }} - <strong>{{ todo.category }}</strong> - <strong>{{ todo.dueDate | date:'shortDate' }}</strong>
       <button (click)="deleteTodo(i)" class="delete-btn">Delete</button>
     </li>
   </ul>

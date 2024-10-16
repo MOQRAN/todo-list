@@ -9,6 +9,7 @@ import { TodoService, Todo } from '../todo.service';
 export class TodoComponent {
   newTodo: string = '';
   newCategory: string = 'Work';
+  dueDate: string = '';
   todos: Todo[] = [];
   filteredTodos: Todo[] = [];
   filterCategory: string = '';
@@ -20,7 +21,7 @@ export class TodoComponent {
 
   addTodo() {
     if (this.newTodo.trim()) {
-      this.todoService.addTodo(this.newTodo.trim(), this.newCategory);
+      this.todoService.addTodo(this.newTodo.trim(), this.newCategory,this.dueDate);
       this.newTodo = '';
       this.filterTodos();
     }
@@ -37,5 +38,8 @@ export class TodoComponent {
     } else {
       this.filteredTodos = this.todos;
     }
+  }
+  isOverdue(dueDate: string): boolean {
+    return new Date(dueDate).getTime() < new Date().getTime();
   }
 }

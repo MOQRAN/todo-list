@@ -53,3 +53,6 @@
 .delete-btn:hover {
   background-color: #c82333;
 }
+.overdue {
+  background-color: #f8d7da;
+}

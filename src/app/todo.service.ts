@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 export interface Todo {
   task: string;
   category: string;
+  dueDate:string
 }
 
 @Injectable({
@@ -15,8 +16,9 @@ export class TodoService {
     return this.todos;
   }
 
-  addTodo(task: string, category: string) {
-    this.todos.push({ task, category });
+  addTodo(task: string, category: string,dueDate:string) {
+    this.todos.push({ task, category,dueDate });
+    this.todos.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
   }
 
   deleteTodo(index: number) {

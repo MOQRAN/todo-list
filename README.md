@@ -1,14 +1,41 @@
 # Angular To-Do List Application
 
-This is a simple To-Do List application built with Angular. It allows users to add, delete, and manage their tasks. The project demonstrates core Angular features such as component-based architecture, two-way data binding, and services.
-
+This is a dynamic and feature-rich **To-Do List Application** built with **Angular**. The app allows users to manage tasks, categorize them, set due dates, prioritize tasks, and track progress. The application also uses **local storage** to persist data, ensuring tasks remain even after the browser is closed.
 ## Features
 
-- Add new tasks to the list
-- Delete tasks from the list
-- Simple and clean user interface
-- Uses Angular services for data management
-- Responsive design
+### 1. Task Management
+- Add new tasks with specific categories, due dates, and priorities.
+- Mark tasks as completed, edit, or delete tasks easily.
+- All tasks are saved in the browser's **local storage** for persistence.
+
+### 2. Task Categories
+- Assign a category to each task for better organization (e.g., "Work", "Personal", etc.).
+- Filter tasks based on categories to quickly find relevant tasks.
+
+### 3. Due Date Management
+- Assign due dates to tasks and automatically highlight overdue tasks with a special background color.
+- Tasks that are past due will be shown in red to notify users.
+
+### 4. Prioritization
+- Tasks can be marked as **High**, **Medium**, or **Low** priority.
+- High-priority tasks are highlighted with red text, Medium priority with yellow, and Low priority with green.
+
+### 5. Task Editing
+- Edit existing tasks with an intuitive interface.
+- Easily switch between task editing mode and normal mode.
+
+### 6. Progress Tracker
+- The app includes a **progress bar** that shows the completion status of all tasks.
+- The bar updates dynamically as tasks are completed.
+
+### 7. Animations
+- Smooth fade-in and fade-out animations when adding or deleting tasks.
+- Interactive and user-friendly animations to improve the experience.
+
+### 8. Responsive Design
+- The layout is responsive, making it accessible on both desktop and mobile devices.
+- Buttons and task lists adjust based on screen size for an optimal user experience.
+
 
 ## Getting Started
 

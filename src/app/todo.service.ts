@@ -4,7 +4,8 @@ export interface Todo {
   task: string;
   category: string;
   dueDate:string,
-  completed: boolean
+  completed: boolean,
+  priority: string;
 }
 
 @Injectable({
@@ -21,11 +22,15 @@ export class TodoService {
   }
 
   getTodos() {
-    return this.todos;
+    return this.todos.sort((a, b) => this.comparePriority(a.priority, b.priority));
+  }
+  comparePriority(a: string, b: string): number {
+    const priorityMap: { [key: string]: number } = { 'High': 1, 'Medium': 2, 'Low': 3 };
+    return priorityMap[a as keyof typeof priorityMap] - priorityMap[b as keyof typeof priorityMap];
   }
 
-  addTodo(task: string, category: string,dueDate:string) {
-    this.todos.push({ task, category,dueDate, completed:false});
+  addTodo(task: string, category: string,dueDate:string, priority: string) {
+    this.todos.push({ task, category,dueDate, completed:false,priority});
     this.todos.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
     this.saveTodos();
   }

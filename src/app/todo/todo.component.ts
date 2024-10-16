@@ -17,6 +17,7 @@ export class TodoComponent {
   newTodo: string = '';
   newCategory: string = 'Work';
   dueDate: string = '';
+  newPriority: string = 'Low';
   todos: Todo[] = [];
   filteredTodos: Todo[] = [];
   filterCategory: string = '';
@@ -33,7 +34,7 @@ export class TodoComponent {
 
   addTodo() {
     if (this.newTodo.trim()) {
-      this.todoService.addTodo(this.newTodo.trim(), this.newCategory,this.dueDate);
+      this.todoService.addTodo(this.newTodo.trim(), this.newCategory,this.dueDate,this.newPriority);
       this.newTodo = '';
       this.filterTodos();
     }

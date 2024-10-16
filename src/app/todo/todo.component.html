@@ -6,6 +6,11 @@
     placeholder="Add a new task"
     class="input-task"
   />
+  <select [(ngModel)]="newPriority" class="priority-select">
+    <option value="Low">Low</option>
+    <option value="Medium">Medium</option>
+    <option value="High">High</option>
+  </select>
   <select [(ngModel)]="newCategory" class="category-select">
     <option value="Work">Work</option>
     <option value="Personal">Personal</option>
@@ -39,11 +44,13 @@
       class="todo-item"
       [ngClass]="{ overdue: isOverdue(todo.dueDate) }"
       [@taskState]
+      [class.priority-high]="todo.priority === 'High'"
     >
     <input type="checkbox" [(ngModel)]="todo.completed" (click)="toggleCompletion(i)" />
       <span [class.completed]="todo.completed" *ngIf="!editingIndex || editingIndex !== i"
         >{{ todo.task }} - <strong>{{ todo.category }}</strong>
         <strong>{{ todo.dueDate | date : "shortDate" }}</strong>
+        <strong>{{ todo.priority }}</strong>
       </span>
       <input *ngIf="editingIndex === i" [(ngModel)]="editedTask" />
       <button

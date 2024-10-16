@@ -80,3 +80,7 @@
   text-decoration: line-through;
   color: gray;
 }
+.priority-high {
+  font-weight: bold;
+  color: red;
+}

@@ -1,7 +1,11 @@
 <div class="todo-container">
   <h1>To-Do List</h1>
 
-  <input [(ngModel)]="newTodo" placeholder="Add a new task" class="input-task" />
+  <input
+    [(ngModel)]="newTodo"
+    placeholder="Add a new task"
+    class="input-task"
+  />
   <select [(ngModel)]="newCategory" class="category-select">
     <option value="Work">Work</option>
     <option value="Personal">Personal</option>
@@ -11,7 +15,11 @@
   <button (click)="addTodo()" class="add-task-btn">Add</button>
 
   <h3>Filter by Category</h3>
-  <select [(ngModel)]="filterCategory" (change)="filterTodos()" class="category-select">
+  <select
+    [(ngModel)]="filterCategory"
+    (change)="filterTodos()"
+    class="category-select"
+  >
     <option value="">All</option>
     <option value="Work">Work</option>
     <option value="Personal">Personal</option>
@@ -19,11 +27,27 @@
   </select>
 
   <ul class="todo-list">
-    <li *ngFor="let todo of filteredTodos; let i = index" class="todo-item" [ngClass]="{'overdue': isOverdue(todo.dueDate)}" [@taskState]>
-      <span *ngIf="!editingIndex || editingIndex !== i">{{ todo.task }} - <strong>{{ todo.category }}</strong> <strong>{{ todo.dueDate | date:'shortDate' }}</strong> </span>
+    <li
+      *ngFor="let todo of filteredTodos; let i = index"
+      class="todo-item"
+      [ngClass]="{ overdue: isOverdue(todo.dueDate) }"
+      [@taskState]
+    >
+      <span *ngIf="!editingIndex || editingIndex !== i"
+        >{{ todo.task }} - <strong>{{ todo.category }}</strong>
+        <strong>{{ todo.dueDate | date : "shortDate" }}</strong>
+      </span>
       <input *ngIf="editingIndex === i" [(ngModel)]="editedTask" />
-      <button *ngIf="!editingIndex || editingIndex !== i" (click)="editTask(i, todo.task)" class="edit-btn">Edit</button>
-      <button *ngIf="editingIndex === i" (click)="saveTask(i)" class="save-btn">Save</button>
+      <button
+        *ngIf="!editingIndex || editingIndex !== i"
+        (click)="editTask(i, todo.task)"
+        class="edit-btn"
+      >
+        Edit
+      </button>
+      <button *ngIf="editingIndex === i" (click)="saveTask(i)" class="save-btn">
+        Save
+      </button>
 
       <button (click)="deleteTodo(i)" class="delete-btn">Delete</button>
     </li>

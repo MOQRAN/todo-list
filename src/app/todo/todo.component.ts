@@ -59,4 +59,11 @@ export class TodoComponent {
     this.editedTask = currentTask;
   }
 
+  saveTask(index: number) {
+    if (this.editedTask.trim()) {
+      this.todos[index].task = this.editedTask.trim();
+      this.editingIndex = null;
+      this.todoService.saveTodos();
+    }
+  }
 }

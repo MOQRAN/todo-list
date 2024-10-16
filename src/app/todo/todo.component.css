@@ -36,11 +36,29 @@
   font-size: 16px;
 }
 
+/* Focus state for input fields */
 .input-task:focus, .input-category:focus, .input-priority:focus, .input-due-date:focus {
   border-color: #28a745;
   box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
   outline: none;
 }
+
+/* Category Select */
+.input-category {
+  background-color: #f8f9fa;
+  color: #495057;
+}
+/* Priority Select */
+.input-priority {
+  background-color: #f8f9fa;
+  color: #495057;
+}
+/* Date Input */
+.input-due-date {
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
 
 /* Buttons */
 .add-task-btn, .edit-btn, .delete-btn, .save-btn {
@@ -91,7 +109,7 @@
 
 .todo-item:hover {
   background-color: #e9ecef;
-  transform: scale(1.02);
+  transform: scale(1.07);
 }
 
 .task-info {
@@ -199,7 +217,7 @@
 
 /* Scale effect on hover */
 .todo-item:hover {
-  transform: scale(1.03);
+  transform: scale(1.07);
 }
 
 /* Animations for adding and removing tasks */
@@ -211,3 +229,17 @@
   animation: fadeOut 0.5s ease forwards;
 }
 
+.input-category  {
+  transition: all 0.3s ease;
+}
+
+/* Add classes to handle dropdown open/close states */
+.input-category.open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.input-category.closed {
+  opacity: 0;
+  transform: translateY(-10px);
+}

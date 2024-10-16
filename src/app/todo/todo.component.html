@@ -6,30 +6,38 @@
     placeholder="Add a new task"
     class="input-task"
   />
-  <select [(ngModel)]="newPriority" class="priority-select">
-    <option value="Low">Low</option>
-    <option value="Medium">Medium</option>
-    <option value="High">High</option>
-  </select>
-  <select [(ngModel)]="newCategory" class="category-select">
-    <option value="Work">Work</option>
-    <option value="Personal">Personal</option>
-    <option value="Urgent">Urgent</option>
-  </select>
-  <input type="date" [(ngModel)]="dueDate" class="date-input" />
+  <ng-container [@dropdownAnimation]>
+    <select [(ngModel)]="newPriority" class="input-priority">
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+  </ng-container>
+
+  <ng-container [@dropdownAnimation]>
+    <select [(ngModel)]="newCategory" class="input-category">
+      <option value="Work">Work</option>
+      <option value="Personal">Personal</option>
+      <option value="Urgent">Urgent</option>
+    </select>
+  </ng-container>
+
+  <input type="date" [(ngModel)]="dueDate" class="input-due-date" />
   <button (click)="addTodo()" class="add-task-btn">Add</button>
 
   <h3>Filter by Category</h3>
-  <select
-    [(ngModel)]="filterCategory"
-    (change)="filterTodos()"
-    class="category-select"
-  >
-    <option value="">All</option>
-    <option value="Work">Work</option>
-    <option value="Personal">Personal</option>
-    <option value="Urgent">Urgent</option>
-  </select>
+  <ng-container [@dropdownAnimation]>
+    <select
+      [(ngModel)]="filterCategory"
+      (change)="filterTodos()"
+      class="category-select"
+    >
+      <option value="">All</option>
+      <option value="Work">Work</option>
+      <option value="Personal">Personal</option>
+      <option value="Urgent">Urgent</option>
+    </select>
+  </ng-container>
 
   <div class="progress-container">
     <h3>Task Progress</h3>
@@ -42,18 +50,29 @@
     <li
       *ngFor="let todo of filteredTodos; let i = index"
       class="todo-item"
-      [ngClass]="{ overdue: isOverdue(todo.dueDate),'completed': todo.completed }"
+      [ngClass]="{
+        overdue: isOverdue(todo.dueDate),
+        completed: todo.completed
+      }"
       [@taskState]
       [@taskAnimation]
       [class.priority-high]="todo.priority === 'High'"
       [class.priority-medium]="todo.priority === 'Medium'"
       [class.priority-low]="todo.priority === 'Low'"
     >
-    <input type="checkbox" [(ngModel)]="todo.completed" (click)="toggleCompletion(i)" />
-      <span [class.completed]="todo.completed" *ngIf="!editingIndex || editingIndex !== i"
+      <input
+        type="checkbox"
+        [(ngModel)]="todo.completed"
+        (click)="toggleCompletion(i)"
+      />
+      <span
+        [class.completed]="todo.completed"
+        *ngIf="!editingIndex || editingIndex !== i"
         >{{ todo.task }} - <strong>{{ todo.category }}</strong>
         <strong>{{ todo.dueDate | date : "shortDate" }}</strong>
-        <p class="priority-{{ todo.priority.toLowerCase() }}">{{ todo.priority }}</p>
+        <p class="priority-{{ todo.priority.toLowerCase() }}">
+          {{ todo.priority }}
+        </p>
       </span>
       <input *ngIf="editingIndex === i" [(ngModel)]="editedTask" />
       <button
